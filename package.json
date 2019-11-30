@@ -1,5 +1,5 @@
 {
-  "name": "react-material-ui-firebase",
+  "name": "storyteller-reboot",
   "version": "2.1.0",
   "private": true,
   "dependencies": {
@@ -43,7 +43,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://phoqe.me/react-material-ui-firebase",
+  "homepage": "https://www.google.com",
   "devDependencies": {
     "gh-pages": "^2.1.1"
   }
