@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-
+import {makeStyles} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +16,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import PersonIcon from '@material-ui/icons/Person';
 
 import authentication from '../../services/authentication';
+
+const style = {
+  appBar: {
+    zIndex: 9999,
+  }
+
+}
 
 class Bar extends Component {
   constructor(props) {
@@ -88,6 +95,9 @@ class Bar extends Component {
   };
 
   render() {
+
+    // const classes = useStyles();
+  
     // Properties
     const { performingAction, user } = this.props;
 
@@ -101,7 +111,7 @@ class Bar extends Component {
     const { menu } = this.state;
 
     return (
-      <AppBar color="primary" position="static">
+      <AppBar color="primary" position="fixed" style={style.appBar}>
         <Toolbar variant="regular">
           <Box display="flex" flexGrow={1}>
             <Typography style={{ cursor: 'pointer' }} color="inherit" variant="h6" onClick={onTitleClick}>{process.env.REACT_APP_NAME}</Typography>
