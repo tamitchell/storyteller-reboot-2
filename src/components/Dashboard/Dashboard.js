@@ -3,14 +3,12 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { IconButton, ListItemIcon } from '@material-ui/core';
-import { ChevronLeft, ChevronRight, Add, ImportContacts } from '@material-ui/icons';
+import { ChevronLeft, ChevronRight, Add, ImportContacts, AccountTree } from '@material-ui/icons';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
@@ -57,11 +55,29 @@ const useStyles = makeStyles(theme => ({
   },
 }}));
 
+const sideMenuList = [
+  {
+    action: 'Create',
+    icon: <Add/>,
+    path: '/create-new'
+  },
+  {
+    action: 'Brainstorm',
+    icon: <AccountTree/>,
+    path: '/map'
+  },
+  {
+    action: 'View All',
+    icon: <ImportContacts/>,
+    path: '/view-all'
+  }
+]
+
 export default function Dashboard() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const sideMenu = sideMenuList;
   const handleDrawer = () => {
 
     setOpen(!open);
@@ -91,15 +107,17 @@ export default function Dashboard() {
         </div>
         <Divider />
         <List>
-          {['Create', 'View All Creations', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <Add /> : <ImportContacts />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        {sideMenu.map((obj, i) => {
+          return (
+            <ListItem button key={i} onDoubleClick={handleDrawer}>
+              <ListItemIcon> {obj.icon}</ListItemIcon>
+              <ListItemText primary={obj.action}/>
+        </ListItem>
+          )
+          })}
         </List>
       </SwipeableDrawer>
-      <main className={classes.content}>
+      <main className={classes.content, 'main-content'}>
         <div className={classes.toolbar} />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

@@ -1,0 +1,8 @@
+@import './abstract/variables';
+
+.main-content {
+height: $main-content-height;
+margin-top: calc(#{$header-height} + 5px);
+overflow-y: scroll;
+padding: 1em;
+}
